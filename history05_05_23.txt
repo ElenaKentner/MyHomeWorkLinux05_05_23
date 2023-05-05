@@ -1,0 +1,32 @@
+ Описание задания.
+
+ 1 уровень сложности: 1 В папке с Вашим именем создайте скрипт taskNAME.sh, где NAME - Ваше имя.
+2 Скрипт должен создавать по 10 файлов с порядковым номером и датой создания. 120.04.23 , 220.04.23 , 320.04.23 .. 10_20.04.23
+3 Создайте в планировщике новое задание, которое должно будет запускать Ваш скрипт каждые 15 минут.
+
+Что пригодится:
+date +"%d.%m.%y"
+touch
+export EDITOR=nano
+crontab -l
+crontab -e
+Crontab.guru
+
+
+1.cd /opt/070223_morning/vasileva
+2.Nano taskELENA.sh
+
+#!/bin/bash
+DATE=$(date +'$d-%m-%y')
+
+for i in {1..10}
+do
+touch /opt/070223_morning/vasileva/$i-$DATE.txt
+done
+
+3.chmod +x taskELENA.sh
+4.crontab -e
+*/15 * * * * /opt/070223_morning/vasileva/taskELENA.sh >> /opt/070223_morning/vasileva/output.txt
+
+5.crontab -l
+*/15 * * * * /opt/070223_morning/vasileva/taskELENA.sh >> /opt/070223_morning/vasileva/output.txt
